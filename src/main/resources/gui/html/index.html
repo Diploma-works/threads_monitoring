@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta charset="UTF-8">
+
+		<script src="http://#{GUI_URL_PREFIX}/alpine.min.js" defer></script>
+		<script src="http://#{GUI_URL_PREFIX}/Chart.min.js"></script>
+
+		<script src="http://#{GUI_URL_PREFIX}/pause_button_component.js"></script>
+		<script src="http://#{GUI_URL_PREFIX}/global_info_chart_component.js"></script>
+		<script src="http://#{GUI_URL_PREFIX}/threads_list_component.js"></script>
+
+		<link  href="http://#{GUI_URL_PREFIX}/common.css" rel="stylesheet" type="text/css" />
+
+	</head>
+
+	<body>
+		<div id="container">
+
+			<div id="main_page_container">
+				<div x-data=" window.pauseButtonComponent() " x-init=" init() " class="panel" id="pause_button_container">
+					<input x-on:click=" handleClick() " type="button" id="pause_button">
+				</div>
+
+				<div x-data=" window.chartComponent() " x-init=" init() " id="global_info_chart_container">
+					<canvas id="global_info_chart"></canvas>
+				</div>
+
+				<div id="threads_filter_input_container">
+					<input id="threads_filter_input" type="text" placeholder="Укажите фильтр">
+				</div>
+
+				<div x-data=" window.threadsListComponent() " x-init=" init() " class="panel" id="threads_list">
+					<ul>
+						<template x-for="(thread, index) in threads">
+							<li class="thread_row" x-on:click="redirect(thread.id)">
+								<span x-text="thread.name" class="thread_name"></span>
+								<span x-text="thread.id" class="thread_id"></span>
+								<span x-text="thread.state" class="thread_state"></span>
+								<span x-text="thread.eventsAmount" class="thread_events_amount"></span>
+							</li>
+						</template>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</body>
+
+</html>

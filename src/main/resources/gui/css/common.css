@@ -1,0 +1,124 @@
+#main_page_container {
+    margin-top: 40px;
+    display: grid;
+    justify-content: center;
+}
+
+#thread_page_container {
+    margin-top: 40px;
+    display: grid;
+    justify-content: center;
+}
+
+#global_info_chart_container {
+    min-width: 600px;
+    width: 90%;
+}
+
+#global_info_chart {
+    width: 100%;
+}
+
+#threads_filter_input_container {
+    width: 100%;
+}
+
+#threads_filter_input {
+    width: 90%;
+}
+
+#pause_button_container {
+    position: fixed;
+    right: 50px;
+    top: 40px;
+    width: 250px;
+    height: 50px;
+}
+
+#pause_button {
+    display: block;
+    margin: 10px auto;
+    min-width: 200px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.thread_events_amount {
+    display: flex;
+    float: right;
+    background-color: lightblue;
+    border-radius: 5px;
+}
+.thread_name {
+    display: flex;
+    float: left;
+}
+.thread_id {
+    display: flex;
+    float: left;
+}
+.thread_id:before { content: " (" }
+.thread_id:after { content: ") " }
+.thread_state {
+    display: flex;
+    float: left;
+}
+.thread_row {
+    margin: 15px 0;
+    cursor: pointer;
+
+    overflow:auto;
+    width: 90%;
+}
+
+#threads_list {
+    margin-left: -35px;
+}
+
+#thread_chart_wrapper {
+    width: 800px;
+}
+
+#thread_info_chart {
+    width: 100%;
+}
+
+
+
+.panel {
+    border-radius: 5px;
+    padding: 10px;
+
+    margin-top: 15px;
+    background-color: rgba(230, 230, 255, 0.5);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 1);
+}
+
+.title {
+    font-size: 1.5em;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-bottom-style: solid;
+}
+.title_lower {
+    font-size: 1.2em;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-bottom-style: solid;
+}
+#thread_params_container {
+    margin-left: 15px;
+}
+
+.param_name {
+    width: 160px;
+    display: inline-block;
+}
+.stack_trace_element {
+    padding: 5px;
+    background-color: rgba(0, 0,0,0.05);
+    border-radius: 5px;
+}
+.event_row {
+    padding-left: 30px;
+}

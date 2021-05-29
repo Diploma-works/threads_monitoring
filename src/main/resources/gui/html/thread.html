@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+
+    <script src="http://#{GUI_URL_PREFIX}/alpine.min.js" defer></script>
+    <script src="http://#{GUI_URL_PREFIX}/Chart.min.js"></script>
+
+    <script src="http://#{GUI_URL_PREFIX}/pause_button_component.js"></script>
+    <script src="http://#{GUI_URL_PREFIX}/thread_component.js"></script>
+    <script src="http://#{GUI_URL_PREFIX}/thread_chart_component.js"></script>
+
+    <link  href="http://#{GUI_URL_PREFIX}/common.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+<div id="container">
+
+    <div id="thread_page_container">
+
+        <div x-data=" window.pauseButtonComponent() " x-init=" init() " class="panel" id="pause_button_container">
+            <input x-on:click=" handleClick() " type="button" id="pause_button">
+        </div>
+
+        <div x-data=" window.threadChartComponent() " x-init=" init() " id="thread_chart_wrapper">
+            <canvas id="thread_info_chart"></canvas>
+
+            <div id="thread_description_container">
+                <div class="panel">
+                    <p class="title">События</p>
+                    <template x-for="(event, index) in threadInfo.eventsNames">
+                        <p x-text="event" class="event_row"></p>
+                    </template>
+                </div>
+
+                <div class="panel">
+                    <p class="title">
+                        <span x-text=" threadInfo.threadInfo.threadName"></span>
+                        <span x-text=" threadInfo.threadInfo.threadId "></span>
+                        <span x-text=" threadInfo.threadInfo.threadState "></span>
+                    </p>
+
+                    <div id="thread_params_container">
+                        <p> <span class="param_name">blockedTime: </span> <span x-text=" threadInfo.threadInfo.blockedTime "> </span> </p>
+                        <p> <span class="param_name">blockedCount: </span> <span x-text=" threadInfo.threadInfo.blockedCount "></span> </p>
+                        <p> <span class="param_name">waitedTime: </span> <span x-text=" threadInfo.threadInfo.waitedTime ">  </span> </p>
+                        <p> <span class="param_name">lockName: </span> <span x-text=" threadInfo.threadInfo.lockName ">   </span> </p>
+                        <p> <span class="param_name">lockOwnerId: </span> <span x-text=" threadInfo.threadInfo.lockOwnerId ">  </span> </p>
+                        <p> <span class="param_name">lockOwnerName: </span> <span x-text=" threadInfo.threadInfo.lockOwnerName "> </span> </p>
+                        <p> <span class="param_name">daemon: </span> <span x-text=" threadInfo.threadInfo.daemon ">       </span> </p>
+                        <p> <span class="param_name">inNative: </span> <span x-text=" threadInfo.threadInfo.inNative ">     </span> </p>
+                        <p> <span class="param_name">suspended: </span> <span x-text=" threadInfo.threadInfo.suspended ">   </span> </p>
+                        <p> <span class="param_name">priority: </span> <span x-text=" threadInfo.threadInfo.priority ">    </span> </p>
+                    </div>
+
+                    <div>
+                        <p class="title_lower">stackTrace</p>
+                        <template x-for="(trace, index) in threadInfo.threadInfo.stackTrace">
+                            <div class="stack_trace_element">
+                                <p> <span>fileName: </span> <span x-text="trace.fileName" ></span> </p>
+                                <p> <span>moduleName: </span> <span x-text="trace.moduleName" ></span> </p>
+                                <p class="event_row">
+                                    <span x-text="trace.lineNumber" >  </span>
+                                    <span x-text="trace.className"  >  </span>
+                                    <span x-text="trace.methodName" >  </span>
+                                </p>
+                            </div>
+                        </template>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+
+</html>

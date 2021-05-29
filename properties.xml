@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<properties>
+
+    <web-mode>
+        <host-name>localhost</host-name>
+        <port>8081</port>
+    </web-mode>
+
+    <connection>
+        <port>9000</port>
+        <host>127.0.0.1</host>
+    </connection>
+
+    <metrics>
+        <period>3000</period>
+        <in-memory-amount>100</in-memory-amount>
+    </metrics>
+
+    <events>
+        <event>
+            <name>Test event</name>
+            <priority>0</priority>
+            <conditions>
+                <condition>'%{ThreadState}%' == 'RUNNABLE'</condition>
+            </conditions>
+            <steps>
+                <step>
+                    <order_id>1</order_id>
+                    <type>log</type>
+                    <log-file>test.log</log-file>
+                    <content>Debug Tool Has Started for '%{ThreadName}%'</content>
+                </step>
+                <step>
+                    <order_id>3</order_id>
+                    <type>command</type>
+                    <content>store</content>
+                </step>
+
+            </steps>
+        </event>
+    </events>
+
+</properties>
